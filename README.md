@@ -1,4 +1,4 @@
-# inflection-input2
+#Tool for testing paradigms
 
 ## Project setup
 ```
