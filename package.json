@@ -1,0 +1,85 @@
+{
+  "name": "inflection-input2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "npm run lint && vue-cli-service build",
+    "test": "vue-cli-service test:unit",
+    "test-c": "vue-cli-service test:unit tests/services/paradigm-tables-compare.test.js",
+    "lint": "vue-cli-service lint --fix"
+  },
+  "dependencies": {
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.2",
+    "@vue/cli-plugin-eslint": "^4.1.2",
+    "@vue/cli-plugin-unit-jest": "^4.1.2",
+    "@vue/cli-service": "^4.1.2",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "alpheios-client-adapters": "github:alpheios-project/client-adapters",
+    "alpheios-data-models": "github:alpheios-project/data-models",
+    "alpheios-inflection-tables": "github:alpheios-project/inflection-tables",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "sass": "^1.25.0",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/standard"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.test.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
+  },
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest",
+    "verbose": true,
+    "testMatch": [
+      "**/tests/**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      "^.+\\.(js|jsx)?$": "babel-jest",
+      ".*\\.(csv)$": "<rootDir>/csvTransform.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
