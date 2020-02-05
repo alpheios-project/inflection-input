@@ -1,10 +1,9 @@
 {
-  "name": "inflection-input2",
+  "name": "inflection-input3",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run lint && vue-cli-service build",
+    "build": "npm run lint && vue-cli-service build --mode development",
     "test": "vue-cli-service test:unit",
     "test-c": "vue-cli-service test:unit tests/services/paradigm-tables-compare.test.js",
     "lint": "vue-cli-service lint --fix"
@@ -41,9 +40,14 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "babel-eslint",
+      "ecmaVersion": 2019,
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
     },
     "overrides": [
       {
