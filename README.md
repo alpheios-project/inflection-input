@@ -1,4 +1,4 @@
-#Tool for testing paradigms
+# Tool for testing paradigms
 
 ## Project setup
 ```
