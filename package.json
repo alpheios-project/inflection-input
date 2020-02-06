@@ -4,7 +4,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run lint && vue-cli-service build --mode development",
-    "test": "vue-cli-service test:unit",
+    "test": "vue-cli-service test:unit --passWithNoTests",
     "test-c": "vue-cli-service test:unit tests/services/paradigm-tables-compare.test.js",
     "lint": "vue-cli-service lint --fix"
   },
