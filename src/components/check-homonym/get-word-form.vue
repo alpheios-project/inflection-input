@@ -3,7 +3,7 @@
       <h2>Check the word (<span>{{ languageName }}):</span></h2>
       <div class="get-word-form">
         <input class="get-word-form-input" v-model="words" placeholder="type a word" @keyup.enter="getTheWord" />
-        <a class="get-word-form-button" @click="getTheWords">Get the word</a>
+        <a class="get-word-form-button" @click="getTheWords">Get information</a>
         <p class="get-word-form-message" v-if="message">{{ message }}</p>
       </div>
   </div>
@@ -15,6 +15,9 @@ import GetHomonymData from '@/services/get-homonym-data.js'
 export default {
   name: 'GetWordForm',
   components: {
+  },
+  props: {
+    wordListFromFile: String
   },
   data () {
     return {
@@ -31,6 +34,11 @@ export default {
       message: null
     }
   },
+  watch: {
+    wordListFromFile () {
+      this.words = this.wordListFromFile
+    }
+  },
   computed: {
     languageName () {
       const langCode = LMF.getLanguageCodeFromId(this.languageID)
@@ -45,7 +53,7 @@ export default {
       this.message = this.messages['lookup started']
       this.$emit('receive', null)
       if (this.words) {
-        let wordsCur = this.words.split(',').map(word => word.trim())
+        const wordsCur = this.words.split(',').map(word => word.trim())
 
         wordsCur.forEach(async word => {
           let adapterRes = await this.getHomonym(word)
