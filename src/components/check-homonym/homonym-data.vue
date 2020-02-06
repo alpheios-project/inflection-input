@@ -2,7 +2,7 @@
     <div class="homonym-data-block" v-if="homonym">
         <div class="target-word" @click="toggleShowDetails"><b>{{ id }}.</b> <b>Target word</b> - {{ homonym.targetWord }} ({{ homonym.language }}) <i class="arrow" :class="showClass"></i></div>
         <div class="homonym-data-block-details" v-show="showDetails" >
-            <lexemes-data :homonym="homonym" v-if="homonym" />
+            <lexemes-data :homonym="homonym" v-if="homonym" :showDefinitions="showDefinitions" />
             <paradigm-tables-data :views="views" />
         </div>
     </div>
@@ -20,7 +20,8 @@ export default {
   props: {
     homonym: Object,
     views: Array,
-    id: Number
+    id: Number,
+    showDefinitions: Boolean
   },
   data () {
     return {
