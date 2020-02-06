@@ -1,9 +1,11 @@
 <template>
   <div class="check-word">
       <upload-words-form @uploadedWordsFromFile = "uploadedWordsFromFile"/>
-      <get-word-form @receive="receiveHomonym" :wordListFromFile = "wordListFromFile"/>
+      <get-word-form
+        @receive="receiveHomonym"  @changeGetShortDefinitions = "changeGetShortDefinitions"
+        :wordListFromFile = "wordListFromFile"/>
       <div class="homonym-block" v-for="(homonymData, homonymID) of homonyms" v-bind:key="homonymID">
-        <homonym-data :homonym="homonymData.homonym" :views="homonymData.paradigmViews" :id="homonymID + 1"/>
+        <homonym-data :homonym="homonymData.homonym" :views="homonymData.paradigmViews" :id="homonymID + 1" :showDefinitions="showDefinitions" />
       </div>
   </div>
 </template>
@@ -26,7 +28,8 @@ export default {
       wordListFromFile: null,
       homonym: null,
       paradigmViews: null,
-      homonyms: []
+      homonyms: [],
+      showDefinitions: false
     }
   },
   computed: {
@@ -51,6 +54,9 @@ export default {
           paradigmViews: paradigmViews
         })
       }
+    },
+    changeGetShortDefinitions (getShortDefinitions) {
+      this.showDefinitions = getShortDefinitions
     }
   }
 }

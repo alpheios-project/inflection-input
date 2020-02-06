@@ -4,6 +4,7 @@
       <div class="get-word-form">
         <input class="get-word-form-input" v-model="words" placeholder="type a word" @keyup.enter="getTheWord" />
         <a class="get-word-form-button" @click="getTheWords">Get information</a>
+        <p><input type="checkbox" id="get-word-form-checkbox" v-model="getShortDefinitions" @change="changeGetShortDefinitions"><label for="get-word-form-checkbox">get short definitions</label></p>
         <p class="get-word-form-message" v-if="message">{{ message }}</p>
       </div>
   </div>
@@ -31,7 +32,8 @@ export default {
         'morph unknown error': `Something is going wrong with homonym lookup for - ${this.word}!`,
         'empty input': 'Type the word, please!'
       },
-      message: null
+      message: null,
+      getShortDefinitions: false
     }
   },
   watch: {
@@ -66,21 +68,8 @@ export default {
       }
     },
 
-    async getTheWord () {
-      this.message = this.messages['lookup started']
-      this.$emit('receive', null)
-      if (this.word) {
-        let adapterRes = await this.getHomonym()
-        if (adapterRes) {
-          this.$emit('receive', adapterRes)
-        }
-      } else {
-        this.message = this.messages['empty input']
-      }
-    },
-
     async getHomonym (word) {
-      let adapterRes = await GetHomonymData.getHomonym(word, this.languageID)
+      let adapterRes = await GetHomonymData.getHomonym(word, this.languageID, this.getShortDefinitions)
       if (adapterRes.result) {
         this.message = ''
         return adapterRes.result
@@ -91,6 +80,10 @@ export default {
           this.message = this.messages['morph unknown error']
         }
       }
+    },
+
+    changeGetShortDefinitions () {
+      this.$emit('changeGetShortDefinitions', this.getShortDefinitions)
     }
   }
 }
