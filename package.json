@@ -1,10 +1,10 @@
 {
   "name": "inflection-input3",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run lint && vue-cli-service build --mode development",
-    "test": "vue-cli-service test:unit",
+    "test": "npm run lint && vue-cli-service build --mode development",
     "test-c": "vue-cli-service test:unit tests/services/paradigm-tables-compare.test.js",
     "lint": "vue-cli-service lint --fix"
   },
