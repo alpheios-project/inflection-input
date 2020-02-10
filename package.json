@@ -13,10 +13,10 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.2",
-    "@vue/cli-plugin-eslint": "^4.1.2",
-    "@vue/cli-plugin-unit-jest": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-plugin-unit-jest": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "alpheios-client-adapters": "github:alpheios-project/client-adapters",
@@ -29,6 +29,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
+    "uuid": "^3.4.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {

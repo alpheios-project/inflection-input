@@ -4,8 +4,9 @@
       <get-word-form
         @receive="receiveHomonym"  @changeGetShortDefinitions = "changeGetShortDefinitions"
         :wordListFromFile = "wordListFromFile"/>
+      <download-form :feedbackData="feedbackData" @clearFeedbackData="clearFeedbackData" />
       <div class="homonym-block" v-for="(homonymData, homonymID) of homonyms" v-bind:key="homonymID">
-        <homonym-data :homonym="homonymData.homonym" :views="homonymData.paradigmViews" :id="homonymID + 1" :showDefinitions="showDefinitions" />
+        <homonym-data :homonym="homonymData.homonym" :views="homonymData.paradigmViews" :id="homonymID + 1" :showDefinitions="showDefinitions" @saveFeedback="saveFeedback"/>
       </div>
   </div>
 </template>
@@ -13,6 +14,7 @@
 import UploadWordsForm from '@/components/check-homonym/upload-words-form.vue'
 import GetWordForm from '@/components/check-homonym/get-word-form.vue'
 import HomonymData from '@/components/check-homonym/homonym-data.vue'
+import DownloadForm from '@/components/check-homonym/download-form.vue'
 
 import GetHomonymData from '@/services/get-homonym-data.js'
 
@@ -21,7 +23,8 @@ export default {
   components: {
     UploadWordsForm,
     GetWordForm,
-    HomonymData
+    HomonymData,
+    DownloadForm
   },
   data () {
     return {
@@ -29,7 +32,9 @@ export default {
       homonym: null,
       paradigmViews: null,
       homonyms: [],
-      showDefinitions: false
+      showDefinitions: false,
+      feedbackData: [],
+      separator: ';'
     }
   },
   computed: {
@@ -57,6 +62,22 @@ export default {
     },
     changeGetShortDefinitions (getShortDefinitions) {
       this.showDefinitions = getShortDefinitions
+    },
+
+    saveFeedback (dopInfo, label, value) {
+      this.feedbackData.push({
+        label,
+        value,
+        targetWord: dopInfo.targetWord ? dopInfo.targetWord : '',
+        lexID: dopInfo.lexID ? dopInfo.lexID : '',
+        lemma: dopInfo.lemma ? dopInfo.lemma : '',
+        inflFeatures: dopInfo.inflFeatures ? dopInfo.inflFeatures : '',
+        paradigmTableTitle: dopInfo.paradigmTableTitle ? dopInfo.paradigmTableTitle : ''
+      })
+    },
+
+    clearFeedbackData () {
+      this.feedbackData = []
     }
   }
 }

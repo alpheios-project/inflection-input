@@ -1,7 +1,7 @@
 <template>
     <div class="paradigm-tables-data" v-if="views && views.length > 0">
         <div class="paradigm-tables-data-item" v-for="(view, viewID) of views" v-bind:key="viewID" >
-            <paradigm-table :table="view.wideTable" :title="getTitle(view)"/>
+            <paradigm-table :table="view.wideTable" :title="getTitle(view)" @saveFeedback="saveFeedback"/>
         </div>
     </div>
 </template>
@@ -25,6 +25,9 @@ export default {
   methods: {
     getTitle (view) {
       return '<b>' + view.paradigm.paradigmID + '</b> - ' + view.title
+    },
+    saveFeedback (dopInfo, label, value) {
+      this.$emit('saveFeedback', dopInfo, label, value)
     }
   }
 }

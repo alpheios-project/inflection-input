@@ -1,6 +1,9 @@
 <template>
     <div class="paradigm-tables-data" v-if="table">
-      <div class="view-title" @click="toggleShowDetails"><span v-html="title"></span> <i class="arrow" :class="showClass"></i></div>
+      <div class="view-title" >
+        <span @click="toggleShowDetails"><span v-html="title"></span> <i class="arrow" :class="showClass"></i></span>
+        <feedback-item type-value="checkbox" :dop-info = "dopInfo" label="wrong table" @saveFeedback="saveFeedback" />
+      </div>
       <div class="infl-prdgm-tbl" v-show="showDetails">
         <div class="infl-prdgm-tbl__row" v-for="(row, rowID) in table.rows" v-bind:key="rowID">
           <div :class="cellClasses(cell)" class="infl-prdgm-tbl__cell" v-for="(cell, cellID) in row.cells" v-bind:key="cellID">
@@ -11,10 +14,12 @@
     </div>
 </template>
 <script>
+import FeedbackItem from '@/components/check-homonym/feedback-item.vue'
 
 export default {
   name: 'ParadigmTable',
   components: {
+    FeedbackItem
   },
   props: {
     table: Object,
@@ -31,6 +36,11 @@ export default {
         'hidden': !this.showDetails,
         'shown': this.showDetails
       }
+    },
+    dopInfo () {
+      return {
+        paradigmTableTitle: this.title.replace('<b>', '').replace('</b>', '')
+      }
     }
   },
   methods: {
@@ -43,6 +53,9 @@ export default {
     },
     toggleShowDetails () {
       this.showDetails = !this.showDetails
+    },
+    saveFeedback (dopInfo, label, value) {
+      this.$emit('saveFeedback', dopInfo, label, value)
     }
   }
 }
