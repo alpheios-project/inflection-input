@@ -1,7 +1,7 @@
 <template>
     <div class="paradigm-tables-data" v-if="table">
-      <div class="view-title" >
-        <span @click="toggleShowDetails"><span v-html="title"></span> <i class="arrow" :class="showClass"></i></span>
+      <div class="view-title" v-if="title">
+        <span @click="toggleShowDetails" ><span v-html="title"></span> <i class="arrow" :class="showClass"></i></span>
         <feedback-item type-value="checkbox" :dop-info = "dopInfo" label="wrong table" @saveFeedback="saveFeedback" />
       </div>
       <div class="infl-prdgm-tbl" v-show="showDetails">
