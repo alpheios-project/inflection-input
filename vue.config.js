@@ -4,7 +4,10 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src/')
+        '@': path.resolve(__dirname, 'src/'),
+        'alpheios-client-adapters$': path.join(__dirname, 'node_modules/alpheios-core/packages/client-adapters/dist/alpheios-client-adapters.min.js'),
+        'alpheios-data-models$': path.join(__dirname, 'node_modules/alpheios-core/packages/data-models/dist/alpheios-data-models.min.js'),
+        'alpheios-inflection-tables$': path.join(__dirname, 'node_modules/alpheios-core/packages/inflection-tables/dist/alpheios-inflection-tables.min.js')
       }
     }
   },
